@@ -25,7 +25,7 @@
       </tbody>
     </table>
     <div
-      v-if="(fetchBooksError || booksLoading) && !books.length"
+      v-if="(fetchBooksError || booksLoading)"
       class="
         table-status
         error-txt
@@ -98,6 +98,7 @@ td,
 th {
   padding: 16px 10px;
   text-align: left;
+  color: var(--primaryText);
 }
 
 tr:nth-child(even) {

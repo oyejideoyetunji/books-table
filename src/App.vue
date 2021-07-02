@@ -17,12 +17,12 @@ export default {
 
 <style>
 :root {
-  --primaryText: #111517;
+  --primaryText: #111314;
   --white: #ffffff;
   --dodgerBlue: #0483ff;
   --gray: #859191;
   --lightGray: #e6e3e3;
-  --grayAlt: #edf0f1;
+  --grayAlt: #f3f4f5;
   --error: #fd8a8a;
 }
 

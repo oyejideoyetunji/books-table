@@ -13,7 +13,7 @@
     </section>
     <BooksTable :booksLoading="booksLoading" :fetchBooksError="fetchBooksError" :books="books" />
     <section
-      v-if="books.length && pages"
+      v-if="!booksLoading && books.length && pages"
       class="w-ful flex items-center justify-between"
     >
       <span>Showing entries</span>
