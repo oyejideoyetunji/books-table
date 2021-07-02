@@ -22,7 +22,8 @@
           v-for="(page, i) in pages"
           :key="i"
           class="pagin-box flex items-center justify-center"
-          v-on:click="() => handlePaginationClick(page.number)"
+          :class="{'primary-content': activePageTab === i}"
+          v-on:click="() => handlePaginationClick(page.number, i)"
         >
           {{ page.label }}
         </span>
@@ -42,6 +43,7 @@ export default {
   },
   data() {
     return {
+      activePageTab: 0,
       filterValue: "",
       currentPage: 1,
       pages: [],
@@ -54,7 +56,6 @@ export default {
   },
   methods: {
     async setBooksData() {
-      console.log(this.filterValue);
       const response = await fetchBooks(
         this.currentPage,
         urlStringParser(this.filterValue)
@@ -79,7 +80,8 @@ export default {
       }
     },
 
-    handlePaginationClick(page) {
+    handlePaginationClick(page, index) {
+      this.activePageTab = index
       this.currentPage = page;
       this.setBooksData();
     },

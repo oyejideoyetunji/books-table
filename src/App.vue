@@ -90,4 +90,9 @@ body,
 .input:focus {
   border: thin solid var(--dodgerBlue);
 }
+
+.primary-content {
+    color: var(--white);
+    background-color: var(--dodgerBlue);
+}
 </style>
