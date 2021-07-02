@@ -55,7 +55,10 @@ export default {
   methods: {
     async setBooksData() {
       console.log(this.filterValue);
-      const response = await fetchBooks(this.currentPage, urlStringParser(this.filterValue));
+      const response = await fetchBooks(
+        this.currentPage,
+        urlStringParser(this.filterValue)
+      );
       if (response?.status === 200 && response?.data) {
         this.books = response.data;
         try {
@@ -76,10 +79,10 @@ export default {
       }
     },
 
-    handlePaginationClick(page){
-        this.currentPage = page
-        this.setBooksData()
-    }
+    handlePaginationClick(page) {
+      this.currentPage = page;
+      this.setBooksData();
+    },
   },
 };
 </script>
