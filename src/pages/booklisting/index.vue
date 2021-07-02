@@ -20,7 +20,10 @@
       v-if="!booksLoading && books.length && pages"
       class="w-ful flex items-center justify-between"
     >
-      <span>Showing entries {{`${currentPageRange.start} to ${currentPageRange.end}`}}</span>
+      <span
+        >Showing entries
+        {{ `${currentPageRange.start} to ${currentPageRange.end}` }}</span
+      >
       <div class="pagin-wrp w-50 flex items-center justify-end">
         <span
           v-for="(page, i) in pages"
@@ -57,13 +60,13 @@ export default {
     };
   },
   computed: {
-      currentPageRange(){
-        const pageSize = 10
-        return {
-            start: 1 + ((this.currentPage - 1) * pageSize),
-            end: ((this.currentPage -1) * pageSize) + this.books.length
-        }
-      }
+    currentPageRange() {
+      const pageSize = 10;
+      return {
+        start: 1 + (this.currentPage - 1) * pageSize,
+        end: (this.currentPage - 1) * pageSize + this.books.length,
+      };
+    },
   },
   mounted() {
     this.setBooksData();

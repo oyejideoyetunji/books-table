@@ -1,4 +1,4 @@
-export function getDashSeparatedDate(date){
+export function getDashSeparatedDate(date) {
     return new Date(date).toLocaleDateString("fr-CA", {
         year: "numeric",
         month: "2-digit",

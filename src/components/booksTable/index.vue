@@ -25,7 +25,7 @@
       </tbody>
     </table>
     <div
-      v-if="(fetchBooksError || booksLoading)"
+      v-if="fetchBooksError || booksLoading"
       class="
         table-status
         error-txt

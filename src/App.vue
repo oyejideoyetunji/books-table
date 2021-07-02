@@ -46,7 +46,7 @@ body,
 }
 
 .fit-content {
-    width: fit-content;
+  width: fit-content;
 }
 
 .w-full {
@@ -110,8 +110,8 @@ body,
 }
 
 .gray-text {
-    color: var(--gray);
-    background-color: var(--white);
+  color: var(--gray);
+  background-color: var(--white);
 }
 
 .loader-tube {
