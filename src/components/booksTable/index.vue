@@ -1,6 +1,6 @@
 <template>
   <section class="w-full table-wrp">
-    <table>
+    <table class="w-full">
       <thead>
         <tr>
           <th>Name</th>
@@ -11,7 +11,7 @@
           <th>RELEASED</th>
         </tr>
       </thead>
-      <tbody v-if="books.length > 0">
+      <tbody v-if="!booksLoading && books.length > 0">
         <tr v-for="book in books" :key="book.isbn">
           <td>{{ book.name }}</td>
           <td>{{ book.isbn }}</td>
@@ -25,7 +25,7 @@
       </tbody>
     </table>
     <div
-      v-if="fetchBooksError && !books.length"
+      v-if="(fetchBooksError || booksLoading) && !books.length"
       class="
         table-status
         error-txt
@@ -36,7 +36,24 @@
         text-center
       "
     >
-      {{ fetchBooksError }}
+      <p v-if="!booksLoading && fetchBooksError">{{ fetchBooksError }}</p>
+      <div v-if="booksLoading && !fetchBooksError" class="fit-content">
+        <div class="loader-tube"><div class="loader"></div></div>
+      </div>
+    </div>
+    <div
+      v-if="!booksLoading && !fetchBooksError && !books.length"
+      class="
+        table-status
+        w-full
+        flex
+        items-center
+        justify-center
+        gray-text
+        text-center
+      "
+    >
+      {{ "Sorry, no results found!" }}
     </div>
   </section>
 </template>
@@ -52,6 +69,10 @@ export default {
     },
     fetchBooksError: {
       type: String,
+      required: true,
+    },
+    booksLoading: {
+      type: Boolean,
       required: true,
     },
   },
@@ -88,6 +109,6 @@ tr:nth-child(even) {
 }
 
 .table-wrp {
-    overflow-x: auto;
+  overflow-x: auto;
 }
 </style>

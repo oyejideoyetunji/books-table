@@ -11,7 +11,7 @@
         />
       </div>
     </section>
-    <BooksTable :fetchBooksError="fetchBooksError" :books="books" />
+    <BooksTable :booksLoading="booksLoading" :fetchBooksError="fetchBooksError" :books="books" />
     <section
       v-if="books.length && pages"
       class="w-ful flex items-center justify-between"
@@ -49,6 +49,7 @@ export default {
       pages: [],
       books: [],
       fetchBooksError: "",
+      booksLoading: false,
     };
   },
   mounted() {
@@ -57,12 +58,14 @@ export default {
   methods: {
     async setBooksData() {
       this.fetchBooksError = "";
+      this.booksLoading = true;
       const response = await fetchBooks(
         this.currentPage,
         urlStringParser(this.filterValue)
       );
       if (response?.status === 200 && response?.data) {
         this.books = response.data;
+        this.booksLoading = false;
         try {
           this.pages = response.headers.link
             .split(",")
