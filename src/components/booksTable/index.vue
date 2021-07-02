@@ -1,6 +1,6 @@
 <template>
-  <section>
-    <table class="w-full">
+  <section class="w-full table-wrp">
+    <table>
       <thead>
         <tr>
           <th>Name</th>
@@ -63,7 +63,7 @@ export default {
 
 <style scoped>
 table {
-  margin: 28px 0 12px;
+  margin: 28px 0 16px;
   border-collapse: collapse;
 }
 
@@ -85,5 +85,9 @@ tr:nth-child(even) {
 
 .table-status {
   height: 300px;
+}
+
+.table-wrp {
+    overflow-x: auto;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <section class="flex justify-end">
+  <div class="w-full">
+    <section class="w-full flex justify-end">
       <div class="search-wrp w-full flex items-center justify-end">
         <span>Search: </span>
         <input
