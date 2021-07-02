@@ -11,7 +11,7 @@
         />
       </div>
     </section>
-    <BooksTable :books="books" />
+    <BooksTable :fetchBooksError="fetchBooksError" :books="books" />
     <section
       v-if="books.length && pages"
       class="w-ful flex items-center justify-between"
@@ -22,7 +22,7 @@
           v-for="(page, i) in pages"
           :key="i"
           class="pagin-box flex items-center justify-center"
-          :class="{'primary-content': activePageTab === i}"
+          :class="{ 'primary-content': activePageTab === i }"
           v-on:click="() => handlePaginationClick(page.number, i)"
         >
           {{ page.label }}
@@ -56,6 +56,7 @@ export default {
   },
   methods: {
     async setBooksData() {
+      this.fetchBooksError = "";
       const response = await fetchBooks(
         this.currentPage,
         urlStringParser(this.filterValue)
@@ -77,11 +78,14 @@ export default {
         } catch (error) {
           this.pages = [];
         }
+      } else {
+        this.fetchBooksError =
+          "Oops! an error occurred while fetching the list if books please try again";
       }
     },
 
     handlePaginationClick(page, index) {
-      this.activePageTab = index
+      this.activePageTab = index;
       this.currentPage = page;
       this.setBooksData();
     },

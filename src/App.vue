@@ -23,6 +23,7 @@ export default {
   --gray: #859191;
   --lightGray: #e6e3e3;
   --grayAlt: #edf0f1;
+  --error: #fd8a8a;
 }
 
 * {
@@ -94,5 +95,13 @@ body,
 .primary-content {
     color: var(--white);
     background-color: var(--dodgerBlue);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.error-txt {
+    color: var(--error);
 }
 </style>
