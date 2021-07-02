@@ -11,12 +11,16 @@
         />
       </div>
     </section>
-    <BooksTable :booksLoading="booksLoading" :fetchBooksError="fetchBooksError" :books="books" />
+    <BooksTable
+      :booksLoading="booksLoading"
+      :fetchBooksError="fetchBooksError"
+      :books="books"
+    />
     <section
       v-if="!booksLoading && books.length && pages"
       class="w-ful flex items-center justify-between"
     >
-      <span>Showing entries</span>
+      <span>Showing entries {{`${currentPageRange.start} to ${currentPageRange.end}`}}</span>
       <div class="pagin-wrp w-50 flex items-center justify-end">
         <span
           v-for="(page, i) in pages"
@@ -52,6 +56,15 @@ export default {
       booksLoading: false,
     };
   },
+  computed: {
+      currentPageRange(){
+        const pageSize = 10
+        return {
+            start: 1 + ((this.currentPage - 1) * pageSize),
+            end: ((this.currentPage -1) * pageSize) + this.books.length
+        }
+      }
+  },
   mounted() {
     this.setBooksData();
   },
@@ -74,7 +87,7 @@ export default {
               return {
                 url: linkParts[0].slice(1, linkParts[0].length - 1),
                 label: linkParts[1].slice(6, linkParts[1].length - 1),
-                number: link.match(/=[\d+]&/)[0].slice(1, 2),
+                number: Number(link.match(/=[\d+]&/)[0].slice(1, 2)),
               };
             })
             .sort((linkA, linkB) => linkA.number - linkB.number);
