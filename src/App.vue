@@ -105,6 +105,10 @@ body,
   text-align: center;
 }
 
+.text-left {
+    text-align: left;
+}
+
 .error-txt {
   color: var(--error);
 }

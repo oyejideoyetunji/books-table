@@ -1,6 +1,7 @@
 <template>
   <section class="w-full table-wrp">
     <table class="w-full">
+      <caption class="text-left">Westeros Books</caption>
       <thead>
         <tr>
           <th>Name</th>
@@ -86,6 +87,10 @@ export default {
 table {
   margin: 28px 0 16px;
   border-collapse: collapse;
+}
+
+caption {
+    padding: 12px 0;
 }
 
 table,

@@ -1,15 +1,12 @@
 <template>
   <div class="w-full">
-    <section class="w-full flex justify-end">
-      <div class="search-wrp w-full flex items-center justify-end">
+    <section class="w-full flex items-center justify-end">
         <span>Search: </span>
         <input
-          class="input w-full"
+          class="input w-full search-inp"
           type="text"
           v-model="filterValue"
-          v-on:keyup="setBooksData"
         />
-      </div>
     </section>
     <BooksTable
       :booksLoading="booksLoading"
@@ -17,20 +14,20 @@
       :books="books"
     />
     <section
-      v-if="!booksLoading && books.length && pages"
-      class="w-ful flex items-center justify-between"
+      v-if="!booksLoading && books.length && pages.length"
+      class="table-legend w-ful flex flex-col"
     >
       <span
         >Showing entries
         {{ `${currentPageRange.start} to ${currentPageRange.end}` }}</span
       >
-      <div class="pagin-wrp w-50 flex items-center justify-end">
+      <div class="pagin-wrp flex items-center">
         <span
           v-for="(page, i) in pages"
           :key="i"
           class="pagin-box flex items-center justify-center"
           :class="{ 'primary-content': activePageTab === i }"
-          v-on:click="() => handlePaginationClick(page.number, i)"
+          @click="() => handlePaginationClick(page.number, i)"
         >
           {{ page.label }}
         </span>
@@ -70,6 +67,11 @@ export default {
   },
   mounted() {
     this.setBooksData();
+  },
+  watch: {
+    filterValue: function(){
+        this.setBooksData()
+    }
   },
   methods: {
     async setBooksData() {
@@ -113,14 +115,21 @@ export default {
 </script>
 
 <style scoped>
-@media only screen and (min-width: 767px) {
-  .search-wrp {
+.pagin-wrp {
+    margin: 12px 0;
+}
+@media only screen and (min-width: 760px) {
+  .pagin-wrp {
+      margin: 0;
+      justify-content: flex-end;
+  }
+  .search-inp {
     width: 50%;
   }
 }
 
 @media only screen and (min-width: 1024px) {
-  .search-wrp {
+  .search-inp {
     width: 30%;
   }
 }
@@ -130,5 +139,13 @@ export default {
   padding: 14px;
   border: thin solid var(--grayAlt);
   cursor: pointer;
+}
+
+@media only screen and (min-width: 760px){
+    .table-legend {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
 }
 </style>
