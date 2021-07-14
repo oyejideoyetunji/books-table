@@ -60,7 +60,7 @@ export default {
     currentPageRange() {
       const pageSize = 10;
       return {
-        start: 1 + (this.currentPage - 1) * pageSize,
+        start: (this.currentPage - 1) * pageSize + 1,
         end: (this.currentPage - 1) * pageSize + this.books.length,
       };
     },
