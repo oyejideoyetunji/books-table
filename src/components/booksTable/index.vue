@@ -12,7 +12,7 @@
           <th>RELEASED</th>
         </tr>
       </thead>
-      <tbody v-if="!booksLoading && books.length > 0">
+      <tbody v-if="!booksLoading && !fetchBooksError && !!books.length">
         <tr v-for="book in books" :key="book.isbn">
           <td>{{ book.name }}</td>
           <td>{{ book.isbn }}</td>
