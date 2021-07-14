@@ -106,7 +106,7 @@ body,
 }
 
 .text-left {
-    text-align: left;
+  text-align: left;
 }
 
 .error-txt {

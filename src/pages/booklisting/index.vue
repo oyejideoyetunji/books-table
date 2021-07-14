@@ -1,12 +1,12 @@
 <template>
   <div class="w-full">
     <section class="w-full flex items-center justify-end">
-        <span>Search: </span>
-        <input
-          class="input w-full search-inp"
-          type="text"
-          v-model="filterValue"
-        />
+      <span>Search: </span>
+      <input
+        class="input w-full search-inp"
+        type="text"
+        v-model="filterValue"
+      />
     </section>
     <BooksTable
       :booksLoading="booksLoading"
@@ -69,9 +69,9 @@ export default {
     this.setBooksData();
   },
   watch: {
-    filterValue: function(){
-        this.setBooksData()
-    }
+    filterValue: function () {
+      this.setBooksData();
+    },
   },
   methods: {
     async setBooksData() {
@@ -101,7 +101,8 @@ export default {
         }
       } else {
         this.fetchBooksError =
-          "Oops! an error occurred while fetching the list if books please try again";
+          "Oops! an error occurred while fetching the list of books please try again";
+        this.booksLoading = false;
       }
     },
 
@@ -116,12 +117,12 @@ export default {
 
 <style scoped>
 .pagin-wrp {
-    margin: 12px 0;
+  margin: 12px 0;
 }
 @media only screen and (min-width: 760px) {
   .pagin-wrp {
-      margin: 0;
-      justify-content: flex-end;
+    margin: 0;
+    justify-content: flex-end;
   }
   .search-inp {
     width: 50%;
@@ -141,11 +142,11 @@ export default {
   cursor: pointer;
 }
 
-@media only screen and (min-width: 760px){
-    .table-legend {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-    }
+@media only screen and (min-width: 760px) {
+  .table-legend {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 </style>
