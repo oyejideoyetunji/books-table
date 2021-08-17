@@ -13,16 +13,7 @@
         </tr>
       </thead>
       <tbody v-if="!booksLoading && !fetchBooksError && !!books.length">
-        <tr v-for="book in books" :key="book.isbn">
-          <td>{{ book.name }}</td>
-          <td>{{ book.isbn }}</td>
-          <td>{{ book.authors.join(", ") }}</td>
-          <td>{{ book.numberOfPages }}</td>
-          <td>{{ book.country }}</td>
-          <td>
-            {{ getDashSeparatedDate(book.released) }}
-          </td>
-        </tr>
+        <table-row v-for="book in books" :key="book.isbn" :book="book" />
       </tbody>
     </table>
     <div
@@ -60,9 +51,12 @@
 </template>
 
 <script>
-import { getDashSeparatedDate } from "../../utils/date";
+import tableRow from "../../components/tableRow"
 export default {
   name: "BooksTable",
+  components: {
+      tableRow
+  },
   props: {
     books: {
       type: Array,
@@ -76,9 +70,6 @@ export default {
       type: Boolean,
       required: true,
     },
-  },
-  methods: {
-    getDashSeparatedDate,
   },
 };
 </script>
