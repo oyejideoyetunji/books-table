@@ -2,9 +2,7 @@
   <div class="w-full">
     <section class="w-full flex items-center justify-end">
       <span>Search: </span>
-      <input
-        class="input w-full search-inp"
-        type="text"
+      <base-input
         v-model="filterValue"
       />
     </section>
@@ -38,12 +36,14 @@
 
 <script>
 import BooksTable from "../../components/booksTable";
+import baseInput from "../../components/input";
 import { fetchBooks } from "../../services/books";
 import { urlStringParser } from "../../utils/string";
 export default {
   name: "BookListing",
   components: {
     BooksTable,
+    baseInput
   },
   data() {
     return {
